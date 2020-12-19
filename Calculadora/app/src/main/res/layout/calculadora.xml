@@ -8,14 +8,13 @@
         android:id="@+id/formula"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:text="TextView"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/resultado"
         android:layout_width="match_parent"
         android:layout_height="95dp"
-        android:text="TextView"
+        android:text="Total:"
         android:textSize="24sp" />
 
     <LinearLayout
