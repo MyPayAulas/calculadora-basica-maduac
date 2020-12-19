@@ -3,6 +3,8 @@ package com.example.calculadora
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.calculadora.*
+import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
 
 class Calculadora : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,21 +23,59 @@ class Calculadora : AppCompatActivity() {
         sete.setOnClickListener { CalculoIncial("7", true ) }
         oito.setOnClickListener { CalculoIncial("8", true ) }
         nove.setOnClickListener { CalculoIncial("9", true ) }
+        ponto.setOnClickListener { CalculoIncial(".",true) }
+
+        soma.setOnClickListener { CalculoIncial("+", false) }
+        subtracao.setOnClickListener { CalculoIncial("-", false) }
+        multiplicacao.setOnClickListener { CalculoIncial("*",false) }
+        divisao.setOnClickListener { CalculoIncial("/",false) }
+
+        reiniciar.setOnClickListener {
+            formula.text = ""
+            resultadofinal.text = ""
+        }
+
+        apagar.setOnClickListener {
+            val string = formula.text.toString()
+
+            if (string.isNotBlank()){
+                formula.text = string.substring(0,string.length-1)
+            }
+            resultadofinal.text = ""
+        }
+
+        igual.setOnClickListener {
+            try {
+                val formula = ExpressionBuilder(formula.text.toString()).build()
+
+                val resultado = formula.evaluate()
+                val longResultado = resultado.toLong()
+
+                if (resultado==longResultado.toDouble()){
+                    resultadofinal.text = longResultado.toString()
+                }else{
+                    resultadofinal.text = resultado.toString()
+                }
+            }catch (e: Exception){
+
+            }
+        }
+
     }
 
     //começar o calculo e obtenção de dados
     fun CalculoIncial(string:String, limpar_dados: Boolean){
-        if (resultado.text.isNotEmpty()){
+        if (resultadofinal.text.isNotEmpty()){
             formula.text = ""
         }
 
         if(limpar_dados){
-            resultado.text = ""
+            resultadofinal.text = ""
             formula.append(string)
         }else{
-            formula.append(resultado.text)
+            formula.append(resultadofinal.text)
             formula.append(string)
-            resultado.text = ""
+            resultadofinal.text = ""
         }
     }
 }
