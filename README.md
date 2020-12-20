@@ -29,7 +29,7 @@ Abaixo segue alguns passos sugeridos para criar a aplicação:
 |   2. Layout             |  **sim** |
 |   3. Button Listeners   |  **sim** |
 |   4. Avaliar Expressão  |  **sim** |
-|   5. Alertar inválido   |            |
+|   5. Alertar inválido   |  **sim** |
 
 ----------
 ## Dificuldades
