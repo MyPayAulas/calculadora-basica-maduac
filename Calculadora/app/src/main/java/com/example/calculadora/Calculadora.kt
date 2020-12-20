@@ -1,5 +1,6 @@
 package com.example.calculadora
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.calculadora.*
@@ -11,6 +12,7 @@ class Calculadora : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calculadora)
 
+        val historico = HistoricoCalculos(mutableListOf())
         supportActionBar!!.hide() //Esconder toolbar
 
         zero.setOnClickListener { OperacoesParaCalculo("0", true ) }
@@ -24,9 +26,9 @@ class Calculadora : AppCompatActivity() {
         oito.setOnClickListener { OperacoesParaCalculo("8", true ) }
         nove.setOnClickListener { OperacoesParaCalculo("9", true ) }
         ponto.setOnClickListener { OperacoesParaCalculo(".",true) }
+
         parentesesEsquerdo.setOnClickListener { OperacoesParaCalculo("(",false) }
         parentesesDireito.setOnClickListener { OperacoesParaCalculo(")",false) }
-
         soma.setOnClickListener { OperacoesParaCalculo("+", false) }
         subtracao.setOnClickListener { OperacoesParaCalculo("-", false) }
         multiplicacao.setOnClickListener { OperacoesParaCalculo("*",false) }
@@ -48,19 +50,26 @@ class Calculadora : AppCompatActivity() {
 
         igual.setOnClickListener {
             try {
-                val formula = ExpressionBuilder(txtformula.text.toString()).build()
+                val formula = ExpressionBuilder(txtformula.text.toString()).build() //tranformar em expressão
+                val resultado = formula.evaluate() //obtém o resultado da expressão
 
-                val resultado = formula.evaluate()
-                val longResultado = resultado.toLong()
-
-                if (resultado==longResultado.toDouble()){
-                    txtresultado.text = longResultado.toString()
+                if(resultado.toInt().toDouble() == resultado){
+                    txtresultado.text = resultado.toInt().toString()
                 }else{
                     txtresultado.text = resultado.toString()
-                }
+                }//mostra o resultado e retira o .0 dos números inteiros
+
+                historico.listaCalculos.add(Calculo(txtformula.text.toString(),txtresultado.text.toString()))
             }catch (e: Exception){
                 txtresultado.text = "Inválido"
-            }
+            }//impede que a aplicação quebre indo para o catch
+        }
+
+        bthistorico.setOnClickListener {
+            val intent = Intent(this, HistoricoActivity::class.java)
+            intent.putExtra("cabecalho","Histórico")
+            intent.putExtra("historico", historico)
+            startActivity(intent)
         }
 
     }
