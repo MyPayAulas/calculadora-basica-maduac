@@ -33,33 +33,33 @@ class Calculadora : AppCompatActivity() {
         divisao.setOnClickListener { OperacoesParaCalculo("/",false) }
 
         reiniciar.setOnClickListener {
-            formula.text = ""
-            resultadofinal.text = ""
+            txtformula.text = ""
+            txtresultado.text = ""
         }
 
         apagar.setOnClickListener {
-            val string = formula.text.toString()
+            val string = txtformula.text
 
             if (string.isNotBlank()){
-                formula.text = string.substring(0,string.length-1)
+                txtformula.text = string.substring(0,string.length-1)
             }
-            resultadofinal.text = ""
+            txtresultado.text = ""
         }
 
         igual.setOnClickListener {
             try {
-                val formula = ExpressionBuilder(formula.text.toString()).build()
+                val formula = ExpressionBuilder(txtformula.text.toString()).build()
 
                 val resultado = formula.evaluate()
                 val longResultado = resultado.toLong()
 
                 if (resultado==longResultado.toDouble()){
-                    resultadofinal.text = longResultado.toString()
+                    txtresultado.text = longResultado.toString()
                 }else{
-                    resultadofinal.text = resultado.toString()
+                    txtresultado.text = resultado.toString()
                 }
             }catch (e: Exception){
-
+                txtresultado.text = "Inválido"
             }
         }
 
@@ -67,17 +67,17 @@ class Calculadora : AppCompatActivity() {
 
     //começar o calculo e obtenção de dados
     fun OperacoesParaCalculo(string:String, limpar_dados: Boolean){
-        if (resultadofinal.text.isNotEmpty()){
-            formula.text = ""
+        if (txtresultado.text.isNotEmpty()){
+            txtformula.text = ""
         }
 
         if(limpar_dados){
-            resultadofinal.text = ""
-            formula.append(string)
+            txtresultado.text = ""
+            txtformula.append(string)
         }else{
-            formula.append(resultadofinal.text)
-            formula.append(string)
-            resultadofinal.text = ""
+            txtformula.append(txtresultado.text)
+            txtformula.append(string)
+            txtresultado.text = ""
         }
     }
 }

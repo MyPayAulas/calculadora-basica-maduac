@@ -5,13 +5,13 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/formula"
+        android:id="@+id/txtformula"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/resultadofinal"
+        android:id="@+id/txtresultado"
         android:layout_width="match_parent"
         android:layout_height="95dp"
         android:textSize="24sp" />
