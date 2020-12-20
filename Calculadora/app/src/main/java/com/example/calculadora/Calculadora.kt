@@ -24,6 +24,8 @@ class Calculadora : AppCompatActivity() {
         oito.setOnClickListener { CalculoIncial("8", true ) }
         nove.setOnClickListener { CalculoIncial("9", true ) }
         ponto.setOnClickListener { CalculoIncial(".",true) }
+        parentesesEsquerdo.setOnClickListener { CalculoIncial("(",false) }
+        parentesesDireito.setOnClickListener { CalculoIncial(")",false) }
 
         soma.setOnClickListener { CalculoIncial("+", false) }
         subtracao.setOnClickListener { CalculoIncial("-", false) }
