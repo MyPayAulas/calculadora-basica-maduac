@@ -66,7 +66,7 @@ class Calculadora : AppCompatActivity() {
         }
 
         bthistorico.setOnClickListener {
-            val intent = Intent(this, HistoricoActivity::class.java)
+            val intent = Intent(this, HistoricoActivityCustomizada::class.java)
             intent.putExtra("cabecalho","Histórico")
             intent.putExtra("historico", historico)
             startActivity(intent)
