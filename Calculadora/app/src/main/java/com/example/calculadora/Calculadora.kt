@@ -13,24 +13,24 @@ class Calculadora : AppCompatActivity() {
 
         supportActionBar!!.hide() //Esconder toolbar
 
-        zero.setOnClickListener { CalculoIncial("0", true ) }
-        um.setOnClickListener { CalculoIncial("1", true ) }
-        dois.setOnClickListener { CalculoIncial("2", true ) }
-        tres.setOnClickListener { CalculoIncial("3", true ) }
-        quatro.setOnClickListener { CalculoIncial("4", true ) }
-        cinco.setOnClickListener { CalculoIncial("5", true ) }
-        seis.setOnClickListener { CalculoIncial("6", true ) }
-        sete.setOnClickListener { CalculoIncial("7", true ) }
-        oito.setOnClickListener { CalculoIncial("8", true ) }
-        nove.setOnClickListener { CalculoIncial("9", true ) }
-        ponto.setOnClickListener { CalculoIncial(".",true) }
-        parentesesEsquerdo.setOnClickListener { CalculoIncial("(",false) }
-        parentesesDireito.setOnClickListener { CalculoIncial(")",false) }
+        zero.setOnClickListener { OperacoesParaCalculo("0", true ) }
+        um.setOnClickListener { OperacoesParaCalculo("1", true ) }
+        dois.setOnClickListener { OperacoesParaCalculo("2", true ) }
+        tres.setOnClickListener { OperacoesParaCalculo("3", true ) }
+        quatro.setOnClickListener { OperacoesParaCalculo("4", true ) }
+        cinco.setOnClickListener { OperacoesParaCalculo("5", true ) }
+        seis.setOnClickListener { OperacoesParaCalculo("6", true ) }
+        sete.setOnClickListener { OperacoesParaCalculo("7", true ) }
+        oito.setOnClickListener { OperacoesParaCalculo("8", true ) }
+        nove.setOnClickListener { OperacoesParaCalculo("9", true ) }
+        ponto.setOnClickListener { OperacoesParaCalculo(".",true) }
+        parentesesEsquerdo.setOnClickListener { OperacoesParaCalculo("(",false) }
+        parentesesDireito.setOnClickListener { OperacoesParaCalculo(")",false) }
 
-        soma.setOnClickListener { CalculoIncial("+", false) }
-        subtracao.setOnClickListener { CalculoIncial("-", false) }
-        multiplicacao.setOnClickListener { CalculoIncial("*",false) }
-        divisao.setOnClickListener { CalculoIncial("/",false) }
+        soma.setOnClickListener { OperacoesParaCalculo("+", false) }
+        subtracao.setOnClickListener { OperacoesParaCalculo("-", false) }
+        multiplicacao.setOnClickListener { OperacoesParaCalculo("*",false) }
+        divisao.setOnClickListener { OperacoesParaCalculo("/",false) }
 
         reiniciar.setOnClickListener {
             formula.text = ""
@@ -66,7 +66,7 @@ class Calculadora : AppCompatActivity() {
     }
 
     //começar o calculo e obtenção de dados
-    fun CalculoIncial(string:String, limpar_dados: Boolean){
+    fun OperacoesParaCalculo(string:String, limpar_dados: Boolean){
         if (resultadofinal.text.isNotEmpty()){
             formula.text = ""
         }
