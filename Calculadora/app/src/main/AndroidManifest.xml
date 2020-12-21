@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculadora">
-        <activity android:name=".HistoricoActivityCustomizada"></activity>
+        <activity android:name=".HistoricoRecycleAcitivity"></activity>
+        <activity android:name=".HistoricoRecycleCardActivity" />
+        <activity android:name=".HistoricoRecycleActivity" />
+        <activity android:name=".HistoricoActivityCustomizada" />
         <activity android:name=".HistoricoActivity" />
         <activity android:name=".Calculadora" />
         <activity android:name=".MainActivity">
